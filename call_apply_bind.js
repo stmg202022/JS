@@ -16,7 +16,7 @@
 // obj.printFullName.call(obj2);
 
 // ======================================================================================
-// Note: Borrowing once obj's function to another obj  /  Do not accept arrow function
+// Note: Borrowing once obj's function to another obj  /  //////////////////////////////////////////////////////////////////////Do not accept arrow function
 // ======================================================================================
 
 // const obj = {
@@ -108,3 +108,35 @@ const myfun = (a) => {
 const bindMyFun = myfun.bind(this, 3);
 const multipleOfThree = bindMyFun()(4);
 console.log(multipleOfThree);
+
+// ==========================================================================================
+// ==========================================================================================
+
+function Parent(name) {
+  this.name = name;
+}
+
+Parent.prototype.greet = function () {
+  console.log(`Hello, ${this.name}!`);
+};
+
+function Child(name, age) {
+  Parent.call(this, name); // Call the parent constructor
+  this.age = age;
+}
+
+// Set up the prototype chain
+Child.prototype = Object.create(Parent.prototype);
+Child.prototype.constructor = Child;
+
+Child.prototype.describe = function () {
+  console.log(`${this.name} is ${this.age} years old.`);
+};
+
+// Usage:
+var parent = new Parent("John");
+parent.greet(); // "Hello, John!"
+
+var child = new Child("Alice", 10);
+child.greet(); // "Hello, Alice!"
+child.describe(); // "Alice is 10 years old."

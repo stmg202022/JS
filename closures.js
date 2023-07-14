@@ -1,4 +1,5 @@
 //what is JS CLOSURE ?
+//A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment)
 //EVERY CLOSURE SCOPE HAVE THREE SCOPE
 //GLOBAL SCOPE,OUTER SCOPE AND LOCAL SCOPE
 
@@ -6,10 +7,10 @@
 
 //GLOBAL SCOPE
 const fn = () => {
-  let name = "samson"; //OUTER SCOPE
+  let name = "samson"; //OUTER SCOPE for fn2 // local variable crated by fn
 
   const fn2 = (x) => {
-    console.log(name, x); //LOCAL SCOPE
+    console.log(name, x); //LOCAL SCOPE crated by fn2
   };
 
   console.log("fn called");
